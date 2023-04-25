@@ -1,0 +1,35 @@
+{
+  "name": "ufarm_pug",
+  "version": "1.0.0",
+  "description": "Website that connects farmers to market",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Eugikats/Ufarm_NodeJs.git"
+  },
+  "author": "Eugene Katusiime",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Eugikats/Ufarm_NodeJs/issues"
+  },
+  "homepage": "https://github.com/Eugikats/Ufarm_NodeJs#readme",
+  "dependencies": {
+    "axios": "^1.3.5",
+    "body-parser": "^1.20.2",
+    "connect-ensure-login": "^0.1.1",
+    "dotenv": "^16.0.3",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "mongoose": "^7.0.4",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.22",
+    "passport": "^0.6.0",
+    "passport-local-mongoose": "^8.0.0",
+    "pug": "^3.0.2"
+  }
+}
