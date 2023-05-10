@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const passportLocalMongoose = require("passport-local-mongoose")
 
 const ao_registerSchema = new mongoose.Schema({
     firstname:{
@@ -15,10 +16,16 @@ const ao_registerSchema = new mongoose.Schema({
     },
     phone:{
         type:String,
-        trim:true
+        trim:true,
+        unique:true,
     },
     email:{
         type:String,
+        trim:true,
+        unique:true,
+    },
+    dob:{
+        type:Date,
         trim:true
     },
     address:{
@@ -28,6 +35,10 @@ const ao_registerSchema = new mongoose.Schema({
     password:{
         type:String,
     },
+    role:{
+        type:String,
+        trim:true
+    },
     gender:{
         type:String,
         trim:true
@@ -35,4 +46,6 @@ const ao_registerSchema = new mongoose.Schema({
     
 })
 
+//userNamefield is the default thats why its good to change it to the other field
+ao_registerSchema.plugin(passportLocalMongoose, {usernameField: "email"})
 module.exports = mongoose.model("Ao_register", ao_registerSchema)

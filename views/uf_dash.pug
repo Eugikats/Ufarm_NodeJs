@@ -1,0 +1,72 @@
+doctype html
+
+head
+
+  meta(charset='UTF-8')
+
+  meta(http-equiv='X-UA-Compatible' content='IE=edge')
+
+  link(rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css' integrity='sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm' crossorigin='anonymous')
+
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+
+  title UF dashboard
+
+.container
+  br
+  h3 Welcome back!
+  br
+  -//button logs you out and sends you to the login page
+  a.btn.btn-success(href='/product_upload', role='button', style='background-color: green; margin-bottom:10px;') Add product
+  a.btn.btn-success(href='/order_dash', role='button', style='background-color: green; margin-bottom:10px;') View Orders
+  form(action="/logout" method="POST")
+    button.btn(type="submit" width="100px") Signout
+    
+  fieldset 
+    table.table
+        thead.thead-dark
+            tr
+
+                th(scope='col') Product name
+                th(scope='col') Ward
+                th(scope='col') Upload date
+                th(scope='col') Unit price
+                th(scope='col') Quantity
+                th(scope='col') Farm directions
+                th(scope='col') Produce type
+                th(scope='col') Delete
+                
+                
+        tbody
+            
+            each product in data
+                tr          
+                    td #{product.productname}
+                    td #{product.ward}
+                    td #{product.uploaddate}
+                    td #{product.unitprice}UGX per #{product.unit}
+                    td #{product.quantity}
+                    td #{product.farmdirections}
+                    td #{product.producetype}
+                    td 
+                        form(method='post', action='/products/delete')
+                            input(type='hidden', name="id", value=product._id)
+                            button.btn.btn-danger(type='submit') Delete    
+                            //- we send info to the backend through forms
+                         
+            else
+                p There are no products in the database
+                
+    
+            
+
+           
+
+            
+
+
+script(src='https://code.jquery.com/jquery-3.2.1.slim.min.js' integrity='sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN' crossorigin='anonymous')
+
+script(src='https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js' integrity='sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q' crossorigin='anonymous')
+
+script(src='https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js' integrity='sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl' crossorigin='anonymous')

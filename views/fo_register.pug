@@ -1,0 +1,140 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(http-equiv='X-UA-Compatible', content='IE=edge')
+  meta(name='viewport', content='width=device-width, initial-scale=1.0')
+  link(href='/css/bootstrap-5.3/css/bootstrap.css', rel='stylesheet')
+  link(rel='stylesheet', href='	https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css')
+  // <link href="/css/bootstrap-5.3/js/bootstrap.bundle.js" >
+  title Farmer One Registration
+header
+  // nav starts here
+  include ../assets/includes/navbar.pug
+  // nav ends her
+main
+  style.
+    form {
+    width: 80%;
+    max-width: 500px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+    }
+    fieldset {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 20px;
+    }
+    legend {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    }
+    label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+    }
+    input,
+    select {
+    display: block;
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    }
+    input[type="submit"] {
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px
+    }
+    .display {
+    height: 50px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    font-size: 24px;
+    text-align: right;
+    padding: 10px;
+    margin-bottom: 10px;
+    }
+  form#regForm(action='#', name='register', onsubmit='return Validate();', method='POST')
+    .container-fluid
+      fieldset
+        legend Personal Information
+        label(for='first-name') First Name:
+        input#fname(type='text', name='firstname')
+        small#fnameErr
+        label Last Name:
+        input#lname(type='text', name='lastname')
+        small#lnameErr
+        label Other Names:
+        input#onames(type='text', name='othernames')
+        // <small id="lnameErr"></small>
+        label(for='gender') Gender:
+        select#gender(name='gender')
+          option(value='') --Please select--
+          option(value='Male') Male
+          option(value='Female') Female
+        small#genderErr
+        label(for='dob') Date of Birth:
+                    input#dob.form-control(type='date', name='dob')
+                    small#dobErr
+      fieldset
+        label(for='ward') Represented Ward:
+        select#ward(name='ward')
+          option(value='') --Please select--
+          option(value='North') North
+          option(value='East') East
+          option(value='West') West
+          option(value='South') South
+        small#wardErr
+        label(for='activities') Activities Undertaken:
+        select#activities(name='activities')
+            option(value='') --Please select--
+            option(value='Horticulture') Horticulture
+            option(value='Dairy') Dairy
+            option(value='Poultry') Poultry
+        small#activityError
+        label Unique Number
+        input#uniquenumber(name='uniquenumber', placeholder='Eg.FO-001')
+        small#uniquenoErr
+      fieldset
+        legend Contact Information
+        label(for='phone') Phone Number:
+        input#phone.form-control(type='tel', name='phonenumber', pattern='[0-9]{10}')
+        small#phoneErr
+        label(for='address') Address
+        textarea#address.form-control(name='address')
+        small#addressErr
+      fieldset
+        legend Residence Information
+        label(for='residence-type') Residence Type:
+        select#residence-type(name='residencetype')
+          option(value='') --Please select--
+          option(value='Permanent') Permanent
+          option(value='Temporary') Temporary
+        small#residenceErr
+        label(for='yor') Years of Residence:
+        input#start-date(type='number', name='yor')
+        small#yorErr
+        input#role.form-control(type='text', name='role' value="FO" hidden)
+      fieldset
+        //
+          <legend>AO Verification Code</legend>
+          <label for="ao-verification-code">AO Verification Code:</label>
+        // <input type="text" id="ao-verification-code" name="ao-verification-code">
+        legend Login password
+        label Password
+        input#password.form-control(type='password', name='password')
+        small#passErr
+    // <button onclick="Validate()" class="submit-button" style="background-color: green; margin-bottom: 50px; border-radius: 10px; width: 150px; color: #fff;" type="submit">Submit</button>
+    button#submit.btn.btn-success.btn-block Register 
+    // <button onclick type="submit">Submit</button>
+footer
+script(src='/css/bootstrap-5.3/js/bootstrap.bundle.js')
+script(src='/js/custom-js/custom.js')
+  includeHTML()
+script(src='/js/fo_auth.js')

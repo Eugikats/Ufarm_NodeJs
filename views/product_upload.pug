@@ -1,0 +1,191 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(http-equiv='X-UA-Compatible', content='IE=edge')
+  meta(name='viewport', content='width=device-width, initial-scale=1.0')
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+  link(href='/css/custom.css/custom.css', rel='stylesheet')
+  title Product upload
+header
+  // nav starts here
+  div(w3-include-html='/includes/navbar.html')
+  // nav ends her
+main
+  .container.col-md-4
+    .card.shadow(style='box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);')
+      .card-body
+        h2.card-title Upload Product
+        form#regForm(action='', name='register', onsubmit='return Validate();', method='POST', enctype="multipart/form-data")
+          fieldset
+            legend Product Details
+            .custom-file
+              label.custom-file-label(for='product-image') Upload Product Image:
+              input#product-image.custom-file-input(type='file', name='productimage')
+            .form-group
+              label(for='productname') Name of Product:
+              input#productname.form-control(type='text', name='productname')
+              small#productErr
+            .form-group
+              label(for='unit') Unit:
+              input#unit.form-control(type='text', name='unit' placeholder="eg KG")
+              small#unitErr
+            .form-group
+              label(for='ward') Represented Ward:
+              select#ward.form-select(name='ward')
+                option(value='') Please select
+                option(value='North') North
+                option(value='East') East
+                option(value='West') West
+                option(value='South') South
+              small#wardErr
+            .form-group
+              label(for='upload-date') Upload Date:
+              input#upload-date.form-control(type='text', name='uploaddate', value='', placeholder='Current Date', readonly='')
+            script.
+              let currentDate = new Date().toISOString().slice(0, 10);
+              document.getElementById("upload-date").value = currentDate;
+            .form-group
+              label(for='unitprice') Unit Price:
+              input#unit-price.form-control(type='number', name='unitprice')
+              small#priceErr
+            .form-group
+              label(for='quantity') Quantity:
+              input#quantity.form-control(type='number', name='quantity')
+              small#quantityErr
+            div
+              label(for='mode-of-payment') Mode of Payment:
+              select#mop.form-select(name='modeofpayment')
+                option(value='') Please select
+                option(value='Cash') Cash
+                option(value='Mobile Money') Mobile Money
+                option(value='Both') Both
+              small#mopErr
+            div
+              label(for='deliverytype') Mode of Delivery:
+              select#mod.form-select(name='modeofdelivery')
+                option(value='') Please select
+                option(value='Pick Up') Pick Up
+                option(value='Home delivery') Home delivery
+                option(value='Both') Both
+              small#deliveryErr
+            .form-group
+              label(for='directions-to-farm') Directions to Farm:
+              textarea#directions-to-farm.form-control(name='farmdirections')
+              small#directionsErr
+            .form-group
+              label(for='produce-type') Produce Type:
+              select#produce-type.form-select(name='producetype')
+                option(value='') Please select
+                option(value='organic') Organic
+                option(value='non-organic') Non-Organic
+              small#produceErr
+          button.btn.btn-success(type='submit') Submit
+  script.
+    const Validate = () => {
+    const productName = document.getElementById("productname");
+    const Unit = document.getElementById("unit");
+    const ward = document.getElementById("ward");
+    const unitPrice = document.getElementById("unit-price");
+    const quantity = document.getElementById("quantity");
+    const mop = document.getElementById("mop");
+    const mod = document.getElementById("mod");
+    const directions = document.getElementById("directions-to-farm");
+    const produceType = document.getElementById("produce-type");
+    let isValid = true;
+    // Validate Product Name
+    if (productName.value === "") {
+    productName.style.borderColor = "red";
+    document.getElementById("productErr").innerHTML = "Please enter a product name.";
+    productName.focus();
+    isValid = false;
+    } else {
+    productName.style.borderColor = "green";
+    document.getElementById("productErr").innerHTML = "";
+    }
+    // Validate Unit
+    if (Unit.value === "") {
+    Unit.style.borderColor = "red";
+    document.getElementById("unitErr").innerHTML = "Please enter a product unit.";
+    Unit.focus();
+    isValid = false;
+    } else {
+    Unit.style.borderColor = "green";
+    document.getElementById("unitErr").innerHTML = "";
+    }
+    // Validate Ward
+    if (ward.value === "") {
+    ward.style.borderColor = "red";
+    document.getElementById("wardErr").innerHTML = "Please select a ward.";
+    ward.focus();
+    isValid = false;
+    } else {
+    ward.style.borderColor = "green";
+    document.getElementById("wardErr").innerHTML = "";
+    }
+    // Validate Unit Price
+    if (unitPrice.value === "" || isNaN(unitPrice.value)) {
+    unitPrice.style.borderColor = "red";
+    document.getElementById("priceErr").innerHTML = "Please enter a valid unit price in UGX.";
+    unitPrice.focus();
+    isValid = false;
+    } else {
+    unitPrice.style.borderColor = "green";
+    document.getElementById("priceErr").innerHTML = "";
+    }
+    // Validate Quantity
+    if (quantity.value === "" || isNaN(quantity.value)) {
+    quantity.style.borderColor = "red";
+    document.getElementById("quantityErr").innerHTML = "Please enter a valid quantity.";
+    quantity.focus();
+    isValid = false;
+    } else {
+    quantity.style.borderColor = "green";
+    document.getElementById("quantityErr").innerHTML = "";
+    }
+    // Validate Mode of Payment
+    if (mop.value === "") {
+    mop.style.borderColor = "red";
+    document.getElementById("mopErr").innerHTML = "Please select a mode of payment.";
+    mop.focus();
+    isValid = false;
+    } else {
+    mop.style.borderColor = "green";
+    document.getElementById("mopErr").innerHTML = "";
+    }
+    // Validate Mode of Delivery
+    if (mod.value === "") {
+    mod.style.borderColor = "red";
+    document.getElementById("deliveryErr").innerHTML = "Please select a mode of delivery.";
+    mod.focus();
+    isValid = false;
+    } else {
+    mod.style.borderColor = "green";
+    document.getElementById("deliveryErr").innerHTML = "";
+    }
+    // Validate Directions to Farm
+    if (directions.value === "") {
+    directions.style.borderColor = "red";
+    document.getElementById("directionsErr").innerHTML = "Please enter directions to the farm.";
+    directions.focus();
+    isValid = false;
+    } else {
+    directions.style.borderColor = "green";
+    document.getElementById("directionsErr").innerHTML = "";
+    }
+    // Validate Produce Type
+    if (produceType.value === "") {
+    produceType.style.borderColor = "red";
+    document.getElementById("produceErr").innerHTML = "Please select a produce type.";
+    produceType.focus();
+    isValid = false;
+    } else {
+    produceType.style.borderColor = "green";
+    document.getElementById("produceErr").innerHTML = "";
+    }
+    // Return form validity
+    return isValid;
+    };
+footer
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+script(src='/custom-js/custom.js')
+  includeHTML()

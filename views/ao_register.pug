@@ -11,7 +11,8 @@ header
   br
   br
   br
-.container.d-flex.justify-content-center.align-items-center.vh-100
+  br
+.container.d-flex.justify-content-center.align-items-center.vh-100(style="margin-top:10px;")
   .card.shadow
     .card-body
       form#regForm(action='/ao_register' name='register' onsubmit='return Validate();' method='POST')
@@ -36,6 +37,10 @@ header
             input#email.form-control(type='email', name='email')
             small#emailErr
           .form-group
+            label(for='dob') Date of Birth:
+                    input#dob.form-control(type='date', name='dob')
+                    small#dobErr  
+          .form-group
             label(for='address') Address
             textarea#address.form-control(name='address')
             small#addressErr
@@ -43,6 +48,8 @@ header
             label(for='password') Password
             input#password.form-control(type='password', name='password')
             small#passErr
+          .form-group
+            input#role.form-control(type='text', name='role' value="AO" hidden)
           .form-group(style='margin: 10px;')
             label(for='gender') Gender:
             select#gender(name='gender')
@@ -50,11 +57,11 @@ header
               option(value='Male') Male
               option(value='Female') Female
             small#genderErr
-          button#submit.btn.btn-primary.btn-block Register 
+          button#submit.btn.btn-success.btn-block Register 
 style.
   .card {
   width: 400px;
   }
-script(src='./customer_auth.js')
-script(src='/assets/css/bootstrap-5.3/js/bootstrap.bundle.js')
+script(src='/js/customer_auth.js')
+script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js', integrity='sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN', crossorigin='anonymous')
 
